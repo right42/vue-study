@@ -8,38 +8,23 @@
 <body>
 
     <div id="app">
-        <ol>
-            <todo-item v-for="todo in todos" v-bind:todo="todo" v-bind:key="id"></todo-item>
-        </ol>
-
+        {{ a }}
+        
+        <button v-on:click="a = 'test'">change</button>
     </div>
+
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        Vue.component('todo-item', {
-            props : ['todo'],
-            template : '<li>{{todo.text}}</li>'
-        });
+        var data = {a : 1}
 
-        var app = new Vue({
+        var vm = new Vue({
             el : '#app',
-            data : {
-                todos : [
-                    {
-                        text : '1234',
-                        id : 1
-                    },
-                    {
-                        text : '12345',
-                        id : 2
-                    },
-                    {
-                        text : '123467',
-                        id : 3
-                    }
-                ]
+            data : data,
+            created : function(){
+                console.log('created ' + this.a);
             }
-        })
+        });
 
     </script>
 
