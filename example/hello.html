@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <ol>
+            <todo-item v-for="todo in todos" v-bind:todo="todo" v-bind:key="id"></todo-item>
+        </ol>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('todo-item', {
+            props : ['todo'],
+            template : '<li>{{todo.text}}</li>'
+        });
+
+        var app = new Vue({
+            el : '#app',
+            data : {
+                todos : [
+                    {
+                        text : '1234',
+                        id : 1
+                    },
+                    {
+                        text : '12345',
+                        id : 2
+                    },
+                    {
+                        text : '123467',
+                        id : 3
+                    }
+                ]
+            }
+        })
+
+    </script>
+
+</body>
+</html>
