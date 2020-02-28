@@ -8,24 +8,29 @@
 <body>
 
     <div id="app">
-        {{ a }}
-        
-        <button v-on:click="a = 'test'">change</button>
+        <p :class="[activeClass, errorClass]">test</p>
     </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        var data = {a : 1}
-
         var vm = new Vue({
             el : '#app',
-            data : data,
-            created : function(){
-                console.log('created ' + this.a);
-            }
+            data : {
+                hasError : true,
+                isActive : false,
+                activeClass : 'active-on',
+                errorClass : 'error-on'
+            },
+            computed: {
+                classList : function(){
+                    return {
+                        active : this.isActive,
+                        'text-danger' : this.hasError
+                    }
+                }
+            },
         });
-
     </script>
 
 </body>
