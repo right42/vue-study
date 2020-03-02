@@ -8,28 +8,41 @@
 <body>
 
     <div id="app">
-        <p :class="[activeClass, errorClass]">test</p>
+        <p>{{total}}</p>
+        <count-button @plus="totalPlus"></count-button>
+        <count-button @plus="totalPlus"></count-button>
     </div>
-
+    
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        var vm = new Vue({
-            el : '#app',
-            data : {
-                hasError : true,
-                isActive : false,
-                activeClass : 'active-on',
-                errorClass : 'error-on'
-            },
-            computed: {
-                classList : function(){
-                    return {
-                        active : this.isActive,
-                        'text-danger' : this.hasError
-                    }
+        Vue.component('count-button', {
+            template : '<button @click="countPlus">{{count}}</button>',
+            data() {
+                return {
+                    count : 0
                 }
             },
+            methods: {
+                countPlus(){
+                    this.count += 1;
+                    this.$emit('plus');
+                }
+            },
+        });
+
+        var vm = new Vue({
+            el : '#app',
+            data(){
+                return {
+                    total : 0
+                };
+            },
+            methods : {
+                totalPlus(){
+                    this.total += 1;
+                }
+            }
         });
     </script>
 
