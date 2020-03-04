@@ -8,27 +8,30 @@
 <body>
 
     <div id="app">
-        <my-component>
-            <child>
-                <div slot-scope="props">
-                    <span></span>
-                </div>
-            </child>
-        </my-component>
+        test
     </div>
     
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-        Vue.component('child',  {
-            template : `<div class="container">
-                            <slot text="hello from child"></slot>
-                        </div>`
+        Vue.directive('focus', {
+           inserted : function(el){
+               el.focus();
+           } 
         });
 
         var vm = new Vue({
-            el : '#app'
+            el : '#app',
+            data(){
+                return {
+                    currentView : 'home'
+                }
+            },
+            render(h) {
+                return h('h1', this.currentView);
+            },
         });
+
     </script>
 
 </body>
